@@ -6,6 +6,7 @@ node_modules
 
 # DS Store
 .DS_store
+.DS_Store
 
 # Eleventy cached API results
 .cache
