@@ -1,0 +1,17 @@
+services:
+  eleventy:
+    build: .
+    volumes:
+      - ./src:/usr/src/app/src  # Your main content, includes, and layouts are here
+      - ./src/_data:/usr/src/app/src/_data  # Data directory
+      - ./src/_includes:/usr/src/app/src/_includes  # Includes directory
+      - ./src/images:/usr/src/app/src/images  # Images directory
+      - ./_site:/usr/src/app/_site  # Output directory
+    command: ["npx", "@11ty/eleventy", "--watch"]
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./_site:/usr/share/nginx/html:ro  # Serve the built site
+    ports:
+      - "8080:80"
