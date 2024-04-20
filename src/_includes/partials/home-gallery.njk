@@ -1,14 +1,14 @@
 <div class="gallery">
   <ul class="image-grid">
-    {% for image in gallery %}
+    {% for image in collections.images %}
     <li class="image-container">
         <a
-          href="/gallery/{{ image.title | slug }}"
-          aria-label="Gallery image {{ image.title }}"
+          href="/gallery/{{ image.data.title | slug }}"
+          aria-label="Gallery image {{ image.data.title }}"
         >
           {% img
-            src=image.src,
-            alt=image.alt,
+            src=image.data.src,
+            alt=image.data.alt,
             className="grid-image",
             sizes="(min-width: 600px) 50vw, (min-width: 800px) 100vw, 33.3vw"
           %}
