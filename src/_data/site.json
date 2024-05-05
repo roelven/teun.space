@@ -2,15 +2,8 @@
     "author": {
         "firstName": "Teun",
         "lastName": "van der Ven",
-        "email": "foobar@gmail.com",
-        "twitterHandle": "tannerdolby",
-        "about": "Freelance photographer interested in film and cinematography"
-    },
-    "socials": {
-        "twitter": "https://twitter.com/tannerdolby",
-        "linkedin": "https://linkedin.com/in/tanner-dolby",
-        "dribbble": "https://dribbble.com/tannerdolby",
-        "github": "https://github.com/tannerdolby"
+        "email": "teun.space@gmail.com",
+        "about": "An 8 year old human who likes to draw."
     },
     "pageMetadata": {
         "home": {
@@ -18,9 +11,6 @@
         },
         "gallery": {
             "content": "A collection of images from John Smith's gallery."
-        },
-        "featured": {
-            "content": "from John Smith's gallery."
         },
         "about": {
             "content": "A page about John Smith, and photography. This template is currently the default version so add your own about me page info here."
