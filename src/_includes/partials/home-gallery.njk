@@ -1,19 +1,15 @@
 <div class="gallery">
   <ul class="image-grid">
     {% for image in collections.images %}
-    <li class="image-container">
+      <li class="image-container">
         <a
           href="/gallery/{{ image.data.title | slug }}"
           aria-label="Gallery image {{ image.data.title }}"
         >
-          {% img
-            src=image.data.src,
-            alt=image.data.alt,
-            className="grid-image",
-            sizes="(min-width: 600px) 50vw, (min-width: 800px) 100vw, 33.3vw"
-          %}
+        {% img image.data.imageSrc, image.data.imageAlt, [300, 480, 640, 1024], "showcase-img", "(max-width: 480px) 33.3vw, (min-width: 640px) 50vw, (min-width: 1000px) 100vw, 33.3vw" %}
+
         </a>
-    </li>
+      </li>
     {% endfor %}
   </ul>
 </div>

@@ -1,5 +1,6 @@
 # Ignore Readme.md
 README.md
+.DS_Store
 
 # Ignore Contributing.md
 CONTRIBUTING.md

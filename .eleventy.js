@@ -3,13 +3,20 @@ const { minify } = require("terser");
 const metagen = require("eleventy-plugin-metagen");
 const eleventyNavigation = require("@11ty/eleventy-navigation");
 const Image = require("@11ty/eleventy-img");
+const util = require('util');
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addFilter('dump', obj => util.inspect(obj, { depth: null }));
+};
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPlugin(metagen);
   eleventyConfig.addPlugin(eleventyNavigation);
 
+  const contentDir = "./src/_content/";
+
   eleventyConfig.addCollection("images", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("./src/_content/**/*.md");
+    return collectionApi.getFilteredByGlob(contentDir + "*.md");
   });
 
   eleventyConfig.addPassthroughCopy("./src/images");
@@ -43,45 +50,49 @@ module.exports = (eleventyConfig) => {
     return `${year}`;
   });
 
-  eleventyConfig.addShortcode("img", async function ({ src, alt, width, height, widths, className, imgDir, sizes = "100vw"}) {
-    if (alt === undefined) {
-      throw new Error(`Missing \`alt\` on responsive image from: ${src}`);
+  eleventyConfig.addNunjucksAsyncShortcode("img", async function (src, alt, widths = [300, 480, 640, 1024], className = "", sizes = "100vw") {
+    if (!src) {
+      console.error("Source is undefined in img shortcode.");
+      return ""; // Gracefully handle missing src
+    }
+    if (!alt) {
+      console.error(`Missing \`alt\` attribute for image: ${src}`);
+      return ""; // Gracefully handle missing alt
     }
 
-    const IMAGE_DIR = imgDir || "./src/images/";
-    const metadata = await Image(IMAGE_DIR + src, {
-      widths: widths || [300, 480, 640, 1024],
-      formats: ["webp", "jpeg"],
-      urlPath: "/img/",
-      outputDir: "_site/img",
-      defaultAttributes: {
+    // Build the full path to the image using the content directory
+    const fullPathToImage = `${contentDir}${src}`;
+
+    console.log("Full path to image:", fullPathToImage);
+
+    try {
+      const metadata = await Image(fullPathToImage, {
+        widths: widths,
+        formats: ["webp", "jpeg"],
+        urlPath: "/img/",
+        outputDir: `./_site/img/`, // Adjust as necessary
+        defaultAttributes: {
+          loading: "lazy",
+          decoding: "async"
+        }
+      });
+
+      let imageAttributes = {
+        alt,
+        sizes,
         loading: "lazy",
-        decoding: "async"
-      }
-    });
+        decoding: "async",
+        class: className
+      };
 
-    let lowsrc = metadata.jpeg[0];
-    let highsrc = metadata.jpeg[metadata.jpeg.length - 1];
-
-    const sources = `${Object.values(metadata).map(
-      imageFormat => `<source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`
-    ).join("\n")}`;
-
-    const img = `
-      <img
-        src="${lowsrc.url}"
-        width="${highsrc.width}"
-        height="${highsrc.height}"
-        alt="${alt}"
-        loading="lazy"
-        decoding="async"
-        class="${className || ''}"
-        width="${width || ''}"
-        height="${height || ''}"
-      >`;
-
-    return `<picture>\n\t${sources}\n\t${img}</picture>`;
+      // Generate the picture element HTML
+      return Image.generateHTML(metadata, imageAttributes);
+    } catch (error) {
+      console.error("Error processing image:", error);
+      return ""; // Return an empty string in case of an error
+    }
   });
+
 
   return {
     dir: {

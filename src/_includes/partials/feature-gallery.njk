@@ -7,12 +7,7 @@
                     href="{{ image.data.title | slug }}"
                     aria-label="Gallery image {{ image.data.title }}"
                 >
-                {% img
-                    src=image.data.src,
-                    alt=image.data.alt,
-                    className="gallery-photo",
-                    sizes="(max-width: 480px) 33.3vw, (min-width: 640px) 50vw, (min-width: 950px) 50vw, 33.3vw"
-                %}
+                {% img image.data.imageSrc, image.data.imageAlt, [300, 480, 640, 1024], "gallery-photo", "(min-width: 600px) 50vw, (min-width: 800px) 100vw, 33.3vw" %}
                 </a>
                 <div class="block-details">
                     <p>{{ image.data.date }}</p>
