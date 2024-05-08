@@ -47,6 +47,7 @@ header .nav-main .home-button {
   font-size: clamp(1.3rem, 4vw, 1.5rem);
   font-weight: 500;
 }
+
 header .intro {
   display: flex;
 /*  justify-content: space-between;*/
@@ -71,7 +72,12 @@ header .intro .home-button {
   font-family: "Luckiest Guy";
   font-style: normal;
   font-display: block;
+  margin-bottom: -50px;
 }
+header .intro .home-button:hover {
+  text-decoration: none;
+}
+
 header .intro .hire-me {
   border: 1px solid #111;
   margin-top: 3px;
@@ -211,13 +217,11 @@ header .intro .hire-me:hover {
 }
 .featured-img .prev-next a {
   padding: 7px 10px;
-  border: 1px solid lightgray;
-  border-radius: 3px;
+  border: 1px solid #111;
+  border-radius: 2px;
   text-decoration: none;
-  background: inherit;
   font-size: 1em;
-  color: #333;
-  background: rgb(242, 242, 242);
+  color: #111;
 }
 .featured-img .prev-next a:hover {
   background: rgb(237, 237, 237);

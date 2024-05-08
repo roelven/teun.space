@@ -10,14 +10,14 @@ url: https://eleventy-gallery.netlify.app
 <html lang="en-US" dir="ltr">
     <head>
         {% metagen 
-            title=image.data.title,
-            desc=image.title + " " + site.pageMetadata.featured.content,
-            url=url + "/gallery/" + image.data.title | slug + "/",
-            img=url + image.imgDir + image.data.src,
-            img_alt=image.alt,
-            twitter_card_type='summary_large_image',
-            name=site.author.firstName + " " + site.author.lastName,
-            comments=true
+            title=title,
+            desc=meta_desc,
+            url=url,
+            img=url + img,
+            img_alt=alt,
+            twitter_card_type=cardType,
+            name=site.author.firstName,
+            comments=false
         %}
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon_data/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon_data/favicon-32x32.png">
@@ -30,6 +30,14 @@ url: https://eleventy-gallery.netlify.app
         <style>
             {{ css | cssmin | safe }}
         </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script>
+          WebFont.load({
+            google: {
+              families: ['Luckiest Guy']
+            }
+          });
+        </script>
     </head>
     <body>
         <a href="#main" class="skip-link">Skip to main content</a>
@@ -37,15 +45,11 @@ url: https://eleventy-gallery.netlify.app
         <main id="main" class="main-container">
             <div class="featured-img">
                 <div class="image-container">
-                    {% img
-                        src=image.data.src,
-                        alt=image.data.alt,
-                        className="showcase-img",
-                        sizes="(max-width: 480px) 33.3vw, (min-width: 640px) 50vw, (min-width: 1000px) 100vw, 33.3vw"
+                    {% img image.data.imageSrc, image.data.imageAlt, [300, 480, 640, 1024], "showcase-img", "(max-width: 480px) 33.3vw, (min-width: 640px) 50vw, (min-width: 1000px) 100vw, 33.3vw" 
                     %}
                     <div class="image-description">
                         <h1 class="h2">{{ image.data.title }}</h1>
-                        <p>{{ image.data.alt }}</p>
+                        <p>{{ image.data.imageAlt }}</p>
                     </div>
                     <div class="prev-next">
                         {% if pagination.href.previous %}
