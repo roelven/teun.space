@@ -43,26 +43,28 @@ url: https://eleventy-gallery.netlify.app
         <a href="#main" class="skip-link">Skip to main content</a>
         {% include "partials/nav.njk" %}
         <main id="main" class="main-container">
+
             <div class="featured-img">
+                <div class="prev-next">
+                {% if pagination.href.previous %}
+                    <a class="prev" href="{{ pagination.href.previous }}"><span class="lt">&lt;</span> Prev</a>
+                {% endif %}
+                {% if pagination.href.next %}
+                    {% if not pagination.href.previous %}
+                    <a class="next" style="margin-left: auto; margin-right: 0;" href="{{ pagination.href.next }}">Next <span class="gt">&gt;</span></a>
+                    {% else %}
+                    <a class="next" href="{{ pagination.href.next }}">Next <span class="gt">&gt;</span></a>
+                    {% endif %}
+                {% endif %}
+                </div>
                 <div class="image-container">
-                    {% img image.data.imageSrc, image.data.imageAlt, [300, 480, 640, 1024], "showcase-img", "(max-width: 480px) 33.3vw, (min-width: 640px) 50vw, (min-width: 1000px) 100vw, 33.3vw" 
-                    %}
                     <div class="image-description">
                         <h1 class="h2">{{ image.data.title }}</h1>
                         <p>{{ image.data.imageAlt }}</p>
                     </div>
-                    <div class="prev-next">
-                        {% if pagination.href.previous %}
-                            <a class="prev" href="{{ pagination.href.previous }}"><span class="lt">&lt;</span> Prev</a>
-                        {% endif %}
-                        {% if pagination.href.next %}
-                            {% if not pagination.href.previous %}
-                            <a class="next" style="margin-left: auto; margin-right: 0;" href="{{ pagination.href.next }}">Next <span class="gt">&gt;</span></a>
-                            {% else %}
-                            <a class="next" href="{{ pagination.href.next }}">Next <span class="gt">&gt;</span></a>
-                            {% endif %}
-                        {% endif %}
-                    </div>
+
+                    {% img image.data.imageSrc, image.data.imageAlt, [300, 480, 640, 1024], "showcase-img", "(max-width: 480px) 33.3vw, (min-width: 640px) 50vw, (min-width: 1000px) 100vw, 33.3vw" 
+                    %}
                 </div>
             </div>
         </main>
