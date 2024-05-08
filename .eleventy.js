@@ -50,7 +50,7 @@ module.exports = (eleventyConfig) => {
     return `${year}`;
   });
 
-  eleventyConfig.addNunjucksAsyncShortcode("img", async function (src, alt, widths = [300, 480, 640, 1024], className = "", sizes = "100vw") {
+  eleventyConfig.addNunjucksAsyncShortcode("img", async function (src, alt, widths = [300, 480, 640, 1024], className = "", sizes = "100vw", displayFullImage = false) {
     if (!src) {
       console.error("Source is undefined in img shortcode.");
       return ""; // Gracefully handle missing src
@@ -85,6 +85,11 @@ module.exports = (eleventyConfig) => {
         class: className
       };
 
+      // Modify the style to display the full image if required
+      if (displayFullImage) {
+        imageAttributes.style = "object-fit: contain; width: 100%; height: auto;";
+      }
+
       // Generate the picture element HTML
       return Image.generateHTML(metadata, imageAttributes);
     } catch (error) {
@@ -92,6 +97,7 @@ module.exports = (eleventyConfig) => {
       return ""; // Return an empty string in case of an error
     }
   });
+
 
 
   return {
