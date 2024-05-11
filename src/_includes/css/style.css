@@ -50,48 +50,30 @@ header .nav-main .home-button {
 
 header .intro {
   display: flex;
-  margin: 2rem auto 1rem auto;
+  margin: 2rem auto 1px auto;
   max-width: 1100px;
   padding: 0 1.5rem;
 }
+header .intro .logo {
+  margin-top: -23px;
+}
 header .intro div p {
   color: #333;
-}
-header .intro div:first-child {
-  margin-right: 2rem;
 }
 .wf-loading header .intro .home-button {
   visibility: hidden;
 }
 header .intro .home-button {
-  display: block;
   font-size: 5vw;
   color: #222;
   font-weight: 400;
   font-family: "Luckiest Guy";
   font-style: normal;
-  font-display: block;
-  margin-bottom: -50px;
+  display: inline-block;
+  height: 5vw;
 }
 header .intro .home-button:hover {
   text-decoration: none;
-}
-
-header .intro .hire-me {
-  border: 1px solid #111;
-  margin-top: 3px;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  height: fit-content;
-  height: -moz-fit-content;
-  border-radius: 3px;
-  background: #1e262b;
-  color: #fff;
-  font-weight: 400;
-  white-space: nowrap;
-}
-header .intro .hire-me:hover {
-  background: #1a1f24;
 }
 
 .main-gallery {
@@ -166,6 +148,7 @@ header .intro .hire-me:hover {
   height: 20rem;
   overflow: hidden;
   border-radius: 2px;
+  padding: 6px;
 }
 .image-grid .image-container a .grid-image {
   object-fit: cover;
@@ -446,13 +429,13 @@ a:hover, a:focus {
 }
 
 main p {
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 }
 main h1, main h2, main h3, main h4, main h5, main h6 {
   margin-bottom: 24px;
 }
 main .gallery {
-  margin: 3rem auto;
+  margin: 1rem auto;
   max-width: 1100px;
   padding: 0 1.5rem;
 }
@@ -493,7 +476,7 @@ h2, .h2 {
 }
 
 #main {
-  margin-top: 3rem;
+  
 }
 
 .about-page {
@@ -594,6 +577,9 @@ h2, .h2 {
   }
   header .nav-main .nav-list li {
     margin: 0 0.75rem;
+  }
+  .image-container {
+    margin: 0px 0px 20px 0px;
   }
 }
 @media screen and (max-width: 650px) {
