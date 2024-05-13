@@ -83,7 +83,9 @@ header .intro .home-button:hover {
 
 .gallery-h1 {
   text-align: center;
-  margin-bottom: 4.25rem;
+  margin-bottom: 1.25rem;
+  padding: 0px 1rem;
+  line-height: 100%;
 }
 
 .gallery-list {
@@ -189,14 +191,15 @@ header .intro .home-button:hover {
   max-height: 1200px;
   margin: 1rem auto 1rem auto;
 }
-.featured-img .prev-next {
+.prev-next {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2rem;
+  
   margin-bottom: 1rem;
+  padding: 0 1.5rem;
 }
-.featured-img .prev-next a {
+.prev-next a {
   padding: 7px 10px;
   border: 1px solid #111;
   border-radius: 2px;
@@ -204,7 +207,7 @@ header .intro .home-button:hover {
   font-size: 1em;
   color: #111;
 }
-.featured-img .prev-next a:hover {
+.prev-next a:hover {
   background: rgb(237, 237, 237);
 }
 .featured-img .image-description .credit {
@@ -212,6 +215,11 @@ header .intro .home-button:hover {
 }
 .featured-img .image-description .credit:hover {
   text-decoration: none;
+}
+
+.pagination {
+  margin: auto;
+  max-width: 1100px;
 }
 
 .about-page {
@@ -224,20 +232,10 @@ header .intro .home-button:hover {
   margin-top: auto;
 }
 
-.about-me-content .about-socials {
-  padding-left: 30px;
-}
-
-.about-socials li {
-  margin: 0.75rem auto;
-  list-style: disc;
-}
-
-.about-me-content {
-  max-width: 80ch;
-  margin: 3rem auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+main .about-me-content {
+  margin: 1rem auto;
+  max-width: 1100px;
+  padding: 0 1.5rem;
 }
 
 .contact-form {
@@ -494,7 +492,6 @@ h2, .h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1.5rem auto 0 auto;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -522,23 +519,6 @@ h2, .h2 {
   margin-bottom: 0.75rem;
 }
 
-.about-me-content .about-socials {
-  padding-left: 30px;
-  margin-bottom: 24px;
-}
-
-.about-socials li {
-  margin: 0.75rem auto;
-  list-style: disc;
-}
-
-.about-me-content {
-  max-width: 80ch;
-  margin: 3rem auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
 .gt {
   margin-left: 3px;
 }
@@ -548,13 +528,13 @@ h2, .h2 {
 }
 
 .main-container {
-  margin: 3rem auto 2rem auto;
+  margin: 1rem auto 2rem auto;
 }
 
 /* Media Queries */
 @media screen and (max-width: 897px) {
   .gallery-item {
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid #111;
     padding-bottom: 1.25rem;
   }
 }
@@ -629,9 +609,6 @@ h2, .h2 {
   }
 }
 @media screen and (max-width: 415px) {
-  .main-container {
-    margin-top: 2rem;
-  }
   .gallery .gallery-list {
     grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   }
@@ -649,7 +626,7 @@ h2, .h2 {
     padding: 0;
     align-items: center;
   }
-  .featured-img .prev-next {
+  .prev-next {
     padding: 0 1.5rem;
   }
   .featured-img h1 {

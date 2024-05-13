@@ -43,8 +43,6 @@ url: https://eleventy-gallery.netlify.app
         <a href="#main" class="skip-link">Skip to main content</a>
         {% include "partials/nav.njk" %}
         <main id="main" class="main-container">
-
-            <div class="featured-img">
                 <div class="pagination">
                     <div class="prev-next">
                     {% if pagination.href.previous %}
@@ -59,14 +57,18 @@ url: https://eleventy-gallery.netlify.app
                     {% endif %}
                     </div>
                 </div>
+            <div class="featured-img">
+
                 <div class="image-container">
                     <div class="image-description">
                         <h1 class="h2">{{ image.data.title }}</h1>
-                        <p>{{ image.data.imageAlt }}</p>
                     </div>
 
                     {% img image.data.imageSrc, image.data.imageAlt, [300, 480, 640, 1024], "showcase-img", "(max-width: 480px) 33.3vw, (min-width: 640px) 50vw, (min-width: 1000px) 100vw, 33.3vw, true" 
                     %}
+                    <div class="image-description">
+                        <p>{{ image.data.imageAlt }}</p>
+                    </div>
 
                 </div>
             </div>

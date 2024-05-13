@@ -10,7 +10,7 @@
                 {% img image.data.imageSrc, image.data.imageAlt, [300, 480, 640, 1024], "gallery-photo", "(min-width: 600px) 50vw, (min-width: 800px) 100vw, 33.3vw" %}
                 </a>
                 <div class="block-details">
-                    <p>{{ image.data.date }}</p>
+                    <p>{{ image.date | readableDate }}</p>
                     <h2><a href="/gallery/{{ image.data.title | slug }}">{{ image.data.title }}</a></h2>
                 </div>
             </div>

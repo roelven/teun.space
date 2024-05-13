@@ -1,9 +1,10 @@
 const CleanCSS = require("clean-css");
-const { minify } = require("terser");
 const metagen = require("eleventy-plugin-metagen");
 const eleventyNavigation = require("@11ty/eleventy-navigation");
 const Image = require("@11ty/eleventy-img");
-const util = require('util');
+const util = require("util");
+const { minify } = require("terser");
+const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter('dump', obj => util.inspect(obj, { depth: null }));
@@ -23,6 +24,10 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("./src/css");
   eleventyConfig.addPassthroughCopy("./src/js");
   eleventyConfig.addPassthroughCopy("./src/favicon_data");
+
+  eleventyConfig.addFilter("readableDate", dateObj => {
+    return DateTime.fromJSDate(dateObj).toFormat("EEE, MMM dd'th' yyyy");
+  });
 
   eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
